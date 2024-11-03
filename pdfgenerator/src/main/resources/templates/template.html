@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .invoice-container {
+            width: 90%;
+            margin: 10px;
+            padding: 20px;
+        }
+        .header, .item-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .header td {
+            padding: 10px;
+            border: 1px solid #000;
+            vertical-align: top;
+        }
+        .item-table th, .item-table td {
+            padding: 10px;
+            text-align: center;
+            border : 1px solid #000;
+            border-top: none;
+        }
+    </style>
+</head>
+<body>
+<div class="invoice-container">
+    <table class="header">
+        <tr>
+            <td>
+                <strong>Seller:</strong><br>
+                <span th:text="${seller}"></span><br>
+                <span th:text="${sellerAddress}"></span><br>
+                GSTIN: <span th:text="${sellerGstin}"></span>
+            </td>
+            <td>
+                <strong>Buyer:</strong><br>
+                <span th:text="${buyer}"></span><br>
+                <span th:text="${buyerAddress}"></span><br>
+                GSTIN: <span th:text="${buyerGstin}"></span>
+            </td>
+        </tr>
+    </table>
+
+    <table class="item-table">
+        <tr>
+            <th style="width: 34%;">Item</th>
+            <th style="width: 22%;">Quantity</th>
+            <th style="width: 22%;">Rate</th>
+            <th style="width: 22%;">Amount</th>
+        </tr>
+        <tr th:each="item : ${items}">
+            <td style="width: 34%;" th:text="${item.name}"></td>
+            <td style="width: 22%;" th:text="${item.quantity}"></td>
+            <td style="width: 22%;" th:text="${item.rate}"></td>
+            <td style="width: 22%;" th:text="${item.amount}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
